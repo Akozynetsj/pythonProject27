@@ -1,12 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
 
-def get_elements_with_class(url, class_name):
+def get_h1_with_attributes(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
-    elements = soup.find_all(class_=class_name)
-    for element in elements:
-        print(element)
+    h1 = soup.find('h1')
+    if h1:
+        attributes = h1.attrs
+        print(f"<h1> attributes: {attributes}")
+    else:
+        print("No <h1> element found.")
+
 url = 'https://www.example.com'
-class_name = 'example-class'
-get_elements_with_class(url, class_name)
+get_h1_with_attributes(url)
