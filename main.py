@@ -1,11 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 
-def get_h2_headings(url):
+def get_tables(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
-    h2_headings = soup.find_all('h2')
-    for heading in h2_headings:
-        print(heading.text)
+    tables = soup.find_all('table')
+    for table in tables:
+        print(table.prettify())
 url = 'https://www.example.com'
-get_h2_headings(url)
+get_tables(url)
